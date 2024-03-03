@@ -1,0 +1,26 @@
+import json
+
+def find_polygon_details(json_file_path, polygon_name):
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+        
+        # Check if the polygon exists in the JSON data
+        if polygon_name in data:
+            polygon_details = data[polygon_name]
+            return polygon_details
+        else:
+            return None
+
+# Example usage
+json_file_path = 'polygon.json'
+polygon_name = 'POLYGON'
+
+polygon_details = find_polygon_details(json_file_path, polygon_name)
+
+if polygon_details:
+    print(f"Details for {polygon_name}:")
+    print(f"URL: {polygon_details['url']}")
+    print(f"Username: {polygon_details['username']}")
+    print(f"Password: {polygon_details['password']}")
+else:
+    print(f"Polygon '{polygon_name}' not found in the JSON file.")
